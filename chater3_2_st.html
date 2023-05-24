@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script>
+        function changeColor(el) {
+            var colors = ['red', 'green', 'blue', 'yellow', 'pink', 'purple'];
+        }
+    </script>
+</head>
+<body>
+    <a-scene cursor="rayOrigin: mouse">
+        <a-box class="clickable" position="-1 0.5 -3" rotation="0 45 0" material="color: #4CC3D9"
+            event-set__click="_event: click; _target: #box; " id="box"></a-box>
+        <a-sphere class="clickable" position="0 1.25 -5" radius="1.25" material="color: #EF2D5E"
+            event-set__click="_event: click; _target: #sphere; " id="sphere"></a-sphere>
+        <a-cylinder class="clickable" position="1 0.75 -3" radius="0.5" height="1.5" material="color: #FFC65D"
+            event-set__click="_event: click; _target: #cylinder; " id="cylinder"></a-cylinder>
+        <a-plane position="0 0 -4" rotation="-90 0 0" width="4" height="4" color="#7BC8A4"></a-plane>
+    </a-scene>
+    <script>
+        document.querySelectorAll('.clickable').forEach(function (el) {
+            el.addEventListener('click', function () {
+            });
+        });
+    </script>
+</body>
+</html>
