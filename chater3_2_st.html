@@ -5,6 +5,8 @@
     <script>
         function changeColor(el) {
             var colors = ['red', 'green', 'blue', 'yellow', 'pink', 'purple'];
+            var randomColor = colors[Math.floor(Math.random() * colors.length)];
+            el.setAttribute('material', {color: randomColor})
         }
     </script>
 </head>
@@ -21,6 +23,7 @@
     <script>
         document.querySelectorAll('.clickable').forEach(function (el) {
             el.addEventListener('click', function () {
+                changeColor(el);
             });
         });
     </script>

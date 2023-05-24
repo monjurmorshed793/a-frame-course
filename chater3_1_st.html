@@ -6,10 +6,10 @@
     AFRAME.registerComponent('change-color', { 
       init: function() {
         var el = this.el;
-        el.addEventListener('mouseenter', function() {                             // mouse enter ---> 'mouseenter' 
+        el.addEventListener('click', function() {                             // mouse enter ---> 'mouseenter' 
           var colors = ['red', 'green', 'blue', 'yellow', 'pink', 'purple'];
           var randomColor = colors[Math.floor(Math.random() * colors.length)];
-          el.setAttribute('color', randomColor)
+          el.setAttribute('material', {color: randomColor})
         });
       }
     });
