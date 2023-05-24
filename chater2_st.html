@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  <script>
+    AFRAME.registerComponent('random-color', {
+      init: function() {
+        var el = this.el;
+        var colors = ['red', 'green', 'blue', 'yellow', 'pink', 'purple'];
+        el.addEventListener('mouseenter', function() {
+          
+        });
+      }
+    });
+  </script>
+</head>
+<body>
+  <a-scene cursor="rayOrigin: mouse">
+    <a-box position="-1 0.5 -3" rotation="0 45 0" color="#4CC3D9" random-color></a-box>
+  </a-scene>
+</body>
+</html>
