@@ -1,0 +1,114 @@
+AFRAME.registerComponent('anicolor', {
+  schema: {
+    to: {type: 'color', default: '#EF2D5E'},
+    dur: {type: 'number', default: 2000}
+  },
+  init: function () {
+    this.color1 = this.el.getAttribute('material').color;
+  },
+  update: function () {
+    var data = this.data;
+    var el = this.el;  
+
+    el.setAttribute('animation', {
+      property: 'material.color',
+      startEvents: 'loaded',
+      dir: 'alternate',
+      loop: true,
+      from: this.color1,
+      to: data.to,
+      dur: data.dur
+    });
+  }
+});
+
+
+AFRAME.registerComponent('aniposition', {
+  schema: {
+    to: {type: 'vec3', default: {x: 0, y: 1.5, z: -1}},
+    dur: {type: 'number', default: 2000}
+  },
+  init: function () {
+    this.position1 = this.el.getAttribute('position');
+  },
+  update: function () {
+    var data = this.data;
+    var el = this.el;  // Reference to the element
+    el.setAttribute('animation', {
+      property: 'position',
+      startEvents: 'loaded',
+      dir: 'alternate',
+      loop: true,
+      from: this.position1,
+      to: data.to,
+      dur: data.dur
+    });
+  }
+});
+
+AFRAME.registerComponent('aniscale', {
+  schema: {
+    scale1: {type: 'vec3'},
+    to: {type: 'vec3', default: {x: 2, y: 2, z: 2}},
+    dur: {type: 'number', default: 2000}
+  },
+  init: function () {
+    this.scale1 = this.el.getAttribute('scale');
+  },
+  update: function () {
+    var data = this.data;
+    var el = this.el;  // Reference to the element
+    el.setAttribute('animation', {
+      property: 'scale',
+      startEvents: 'loaded',
+      dir: 'alternate',
+      loop: true,
+      from: this.scale1,
+      to: data.to,
+      dur: data.dur
+    });
+  }
+});
+
+AFRAME.registerComponent('anirotation', {
+  schema: {
+    to: {type: 'vec3', default: {x:0, y:360, z:0}},
+    loop: {type: 'boolean', default: true},
+    dur: {type: 'number', default: 1000}
+  },
+  init: function () {
+    var data = this.data;
+    var el = this.el;
+    el.setAttribute('animation', {
+        property: 'rotation',
+        to: {x: data.to.x, y: data.to.y, z: data.to.z},
+        loop: data.loop,
+        dur: data.dur
+    });
+  }
+});
+
+AFRAME.registerComponent('anivisible', {
+  schema: {
+    opacity1: {type: 'number', default: 1.0},
+    to: {type: 'number', default: 0.0},
+    dur: {type: 'number', default: 2000}
+  },
+  init: function () {
+    this.el.setAttribute('material', 'transparent', true);
+    this.opacity1 = this.el.getAttribute('material').opacity;
+  },
+  update: function () {
+    var data = this.data;
+    var el = this.el;  // Reference to the element
+    el.setAttribute('animation', {
+      property: 'material.opacity',
+      startEvents: 'loaded',
+      dir: 'alternate',
+      loop: true,
+      from: this.opacity1,
+      to: data.to,
+      dur: data.dur
+    });
+  }
+});

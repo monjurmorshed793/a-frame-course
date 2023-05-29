@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>My A-Frame Scene</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script>
+      AFRAME.registerComponent('my-component', {
+        schema: {
+          color: {type: 'color', default: 'red'},
+        },
+        init: function () {
+          console.log('Component attached to', this.el);
+        },
+        update: function (oldData) {
+          console.log('Component data updated from', oldData, 'to', this.data);
+        },
+        remove: function () {
+          console.log('Component detached from', this.el);
+        },
+        tick: function (time, timeDelta) {
+          console.log('Component tick at time', time, 'with delta', timeDelta);
+        }
+      });
+    </script>
+  </head>
+  <body>
+    <a-scene>
+      <a-box my-component position="-1 0.5 -3" rotation="0 45 0"></a-box>
+    </a-scene>
+  </body>
+</html>

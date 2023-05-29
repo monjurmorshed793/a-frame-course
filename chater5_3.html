@@ -1,0 +1,24 @@
+<html>
+  <head>
+    <title>Canvas Texture Example</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <canvas id="canvas" width="256" height="256"></canvas>
+      </a-assets>
+      <a-box src="#canvas" position="0 1 -5" rotation="0 45 0"></a-box>
+      <script>
+        var canvas = document.getElementById('canvas');
+        const ctx = canvas.getContext('2d');
+        ctx.fillStyle = 'blue';
+        ctx.fillRect(0, 0, 128, 128);
+        ctx.fillRect(128, 128, 128, 128);
+        ctx.fillStyle = 'red';
+        ctx.fillRect(0, 128, 128, 128);
+        ctx.fillRect(128, 0, 128, 128);
+      </script>
+    </a-scene>
+  </body>
+</html>
