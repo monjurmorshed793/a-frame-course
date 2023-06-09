@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Seat Model Example</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="model" src="seat.obj"></a-asset-item>
+        <a-asset-item id="model-mtl" src="seat.mtl"></a-asset-item>
+      </a-assets>
+      <a-entity obj-model="obj : #model; mtl: #model-mtl" position="0 1.6 -3"></a-entity>
+    </a-scene>
+  </body>
+</html>

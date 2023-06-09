@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@c-frame/aframe-physics-system@4.2.2/dist/aframe-physics-system.min.js"></script>
+  </head>
+  <body>
+    <a-scene physics="gravity: -9.8">
+      <a-assets>
+        <img id="img" src="img.png"></img>
+      </a-assets>
+    
+      <a-image src="#img" position="-0.8 2.5 0" material="" geometry=""></a-image>
+      <a-text value="nice to meet you"  color="#000000" position="0 3 1"></a-text>
+      <a-box position="0 6 -5" color="red" dynamic-body></a-box>
+      <a-plane position="0 0 -6" rotation="-90 0 0" width="20" height="20" color="#7BC8A4" static-body></a-plane>
+      <a-entity position="0 2 4" camera look-controls></a-entity>
+    </a-scene>
+  </body>
+</html>

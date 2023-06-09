@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>GLB Example</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="picnic.js"></script>
+    <style>
+      #load-button {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        display: none;
+        z-index: 1;
+      }
+    </style>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="picnic" src="picnic.glb"></a-asset-item>
+      </a-assets>
+      
+      <a-entity id="player" position="0 1.6 0" display-button camera look-controls wasd-controls>
+      </a-entity>
+      
+      <a-entity id="picnic-entity" scale="0.005 0.005 0.005" visible="false" position="0 -0.5 -1" gltf-model="#picnic">
+      </a-entity>
+      
+      <a-box id="trigger-box" position="0 0 -5" width="4" height="4" depth="4" color="#7BC8A4">
+      </a-box>
+
+      <button id="load-button">Load Picnic</button>
+    </a-scene>
+  </body>
+</html>

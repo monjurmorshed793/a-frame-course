@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+<a-scene background="color: sky">
+    <a-assets>
+        <a-asset-item id="clouds-model" src="Clouds.glb"></a-asset-item>
+        <a-asset-item id="wave-model" src="Wave.glb"></a-asset-item>
+        <a-asset-item id="field-model" src="Field.glb"></a-asset-item>
+        <a-asset-item id="ocean-model" src="Ocean.glb"></a-asset-item>
+        <a-asset-item id="ship-model" src = "Boat.glb"></a-asset-item>
+    </a-assets>
+    <a-entity camera="" position="0 100 4.94348" wasd-controls="" rotation="-5.462579618777268 0 0" look-controls="" aframe-injected="" data-aframe-inspector-original-camera=""></a-entity>
+
+    <a-entity id="ocean-container"></a-entity>
+    <script>
+        AFRAME.registerComponent('infinite-ocean', {
+            init: function () {
+                var oceanSize = 20; // Size of each individual ocean
+                var numOceans = 5; // Number of oceans to generate
+                var oceanModel = '#ocean-model'; // ID of the ocean model
+
+                var container = document.getElementById('ocean-container');
+
+                for (var i = 0; i < numOceans; i++) {
+                    var ocean = document.createElement('a-entity');
+                    ocean.setAttribute('gltf-model', oceanModel);
+                    ocean.setAttribute('position', `${oceanSize * i} 0 0`);
+
+                    container.appendChild(ocean);
+                }
+            }
+        });
+
+        // Attach the infinite-ocean component to the ocean container entity
+        document.getElementById('ocean-container').setAttribute('infinite-ocean', '');
+    </script>
+   <!-- <a-entity position="-70 -10 -100" scale="0.2 0.2 0.2" rotation="0 0 0" gltf-model="#ocean-model" >
+        <a-entity position="154.82148 11.44051 0" scale="0.2 0.2 0.2" rotation="" gltf-model="Boat.glb"></a-entity>
+    </a-entity>-->
+
+</a-scene>
+</body>
+</html>

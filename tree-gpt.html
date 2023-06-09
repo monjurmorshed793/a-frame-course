@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>A-Frame Forest Example</title>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+</head>
+<body>
+  <a-scene>
+
+    <!-- Tree model -->
+    <a-asset-item id="tree-model" src="Tree.glb"></a-asset-item>
+    <a-asset-item id="surface-model" src="Wave.glb"></a-asset-item>
+
+        <!-- Surface -->
+    <a-plane position="0 0 0" src="Wave.glb"></a-plane>
+
+    <!-- Forest generation -->
+    <script>
+      // Number of trees in the forest
+      var numTrees = 50;
+
+      // Random position generation helper function
+      function getRandomPosition(range) {
+        return Math.random() * range - range / 2;
+      }
+
+      // Generate forest
+      for (var i = 0; i < numTrees; i++) {
+        var tree = document.createElement("a-entity");
+        tree.setAttribute("gltf-model", "#tree-model");
+        tree.setAttribute("position", {
+          x: getRandomPosition(30),
+          y: 1.5,
+          z: getRandomPosition(30)
+        });
+        tree.setAttribute("scale", "1 1 1");
+        tree.setAttribute("rotation", "0 " + Math.random() * 360 + " 0");
+
+        document.querySelector("a-scene").appendChild(tree);
+      }
+    </script>
+  </a-scene>
+</body>
+</html>

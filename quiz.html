@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="quiz.js"></script>
+    <style>
+        #score {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            font-size: 2em;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="score">Score: 0</div>
+    <a-scene cursor="rayOrigin: mouse">
+        <a-camera wasd-controls="acceleration: 30;"></a-camera>
+
+        <!-- Question 1 -->
+        <a-entity id="question1" class="question">
+            <a-entity position="-1 1.8 -3" text="value: What is the capital of France?; color: black;"></a-entity>
+
+            <a-entity position="-1 1.6 -3" text="value: Paris; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="-1 1.6 -3"
+                quiz-option="correct: true; nextQuestion: question2" opacity="0" depth="0.1"></a-box>
+
+            <a-entity position="1 1.6 -3" text="value: Berlin; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="1 1.6 -3"
+                quiz-option="correct: false; nextQuestion: question2" opacity="0" depth="0.1"></a-box>
+
+            <a-entity position="-1 1.4 -3" text="value: London; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="-1 1.4 -3"
+                quiz-option="correct: false; nextQuestion: question2" opacity="0" depth="0.1"></a-box>
+
+            <a-entity position="1 1.4 -3" text="value: Rome; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="1 1.4 -3"
+                quiz-option="correct: false; nextQuestion: question2" opacity="0" depth="0.1"></a-box>
+        </a-entity>
+
+        <!-- Question 2 -->
+        <a-entity id="question2" class="question" visible="false">
+            <a-entity position="-1 1.8 -3"
+                text="value: Who is the author of 'To Kill a Mockingbird'?; color: black;"></a-entity>
+
+            <a-entity position="-1 1.6 -3" text="value: Harper Lee; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="-1 1.6 -3"
+                quiz-option="correct: true; nextQuestion: question3" opacity="0" depth="0.1"></a-box>
+
+            <a-entity position="1 1.6 -3" text="value: J.K. Rowling; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="1 1.6 -3"
+                quiz-option="correct: false; nextQuestion: question3" opacity="0" depth="0.1"></a-box>
+
+            <a-entity position="-1 1.4 -3" text="value: George Orwell; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="-1 1.4 -3"
+                quiz-option="correct: false; nextQuestion: question3" opacity="0" depth="0.1"></a-box>
+
+            <a-entity position="1 1.4 -3" text="value: Mark Twain; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="1 1.4 -3"
+                quiz-option="correct: false; nextQuestion: question3" opacity="0" depth="0.1"></a-box>
+        </a-entity>
+
+        <!-- Question 3 -->
+        <a-entity id="question3" class="question" visible="false">
+            <a-entity position="-1 1.8 -3"
+                text="value: What is the tallest mountain in the world?; color: black;"></a-entity>
+
+            <a-entity position="-1 1.6 -3" text="value: Mount Everest; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="-1 1.6 -3"
+                quiz-option="correct: true; nextQuestion: result" opacity="0" depth="0.1"></a-box>
+
+            <a-entity position="1 1.6 -3" text="value: K2; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="1 1.6 -3"
+                quiz-option="correct: false; nextQuestion: result" opacity="0" depth="0.1"></a-box>
+
+            <a-entity position="-1 1.4 -3" text="value: Kangchenjunga; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="-1 1.4 -3"
+                quiz-option="correct: false; nextQuestion: result" opacity="0" depth="0.1"></a-box>
+
+            <a-entity position="1 1.4 -3" text="value: Lhotse; color: black;"></a-entity>
+            <a-box class="clickable" scale="1 0.14 1" position="1 1.4 -3"
+                quiz-option="correct: false; nextQuestion: result" opacity="0" depth="0.1"></a-box>
+        </a-entity>
+
+        <!-- Result -->
+        <a-entity id="result" class="question" visible="false">
+            <a-entity position="0 1.8 -3" text="value: You finished the quiz!; color: black;"></a-entity>
+            <a-entity id="finalScore" position="0 1.6 -3" text="value: ; color: black;"></a-entity>
+        </a-entity>
+
+    </a-scene>
+</body>
+
+</html>
