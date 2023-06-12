@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+  <script src="aframe-mountain-component.min.js"></script>
+</head>
+<body>
+  <a-scene og="type: exponential; color: #CCF; " background="color:#87CEEB">
+    <a-assets>
+        <img id="mountain" src="content/mountain.png" />
+              <img id="concrete-texture" src="content/landingPad.png" />
+        <a-asset-item id="plane-model" src="Airplane.glb"></a-asset-item>
+        <a-asset-item id="cloud-model" src="Clouds.glb" material="color:blue"></a-asset-item>
+        <audio id="wind-sound" src="content/wind.wav" preload="auto"></audio>
+      </a-assets>
+
+      <a-mountain scale="1 1 1" id="mountain"
+      material="src: #mountain; repeat: 4 4"
+      sound="src: #wind-sound; autoplay: true; volume: 3; loop: true;"
+      ></a-mountain>
+
+      <a-entity id="car"  position="-26 400 0" scale="20 20 20" rotation="-1.6976739469726292 110 -1.2880091234540907" gltf-model="Airplane.glb"></a-entity>
+    
+      <a-camera position="0 400 70">
+        <!-- Register keyboard event listeners and call JavaScript function for movement -->
+        <script>
+          document.addEventListener('keydown', function (event) {
+            const airplane1 = document.querySelector('#car');
+            console.log('working');
+            const moveDelta = 10;
+            console.log(event.key);
+  
+            if (event.key === 'ArrowUp' || event.key === 'w') {
+              console.log('w key pressed')
+              airplane1.object3D.position.z -= moveDelta;
+            } else if (event.key === 'ArrowDown' || event.key === 's') {
+              airplane1.object3D.position.z += moveDelta;
+            } else if (event.key === 'ArrowLeft' || event.key === 'a') {
+              airplane1.object3D.position.x -= moveDelta;
+            } else if (event.key === 'ArrowRight' || event.key === 'd') {
+              airplane1.object3D.position.x += moveDelta;
+            }
+          });
+        </script>
+      </a-camera>
+    
+    <a-sky color="#ECECEC"></a-sky>
+  </a-scene>
+
+  
+</body>
+</html>
