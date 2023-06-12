@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Seat Model Example</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r124/three.min.js"></script>
+<script src="https://unpkg.com/three@0.126.0/examples/js/loaders/GLTFLoader.js"></script>
+
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="model" src="king.glb"></a-asset-item>
+      </a-assets>
+      <a-entity gltf-model="#model" position="0 1.6 -3"></a-entity>
+      <script>
+        document.querySelector('a-scene').addEventListener('loaded', function () {
+          let loader = new THREE.GLTFLoader();
+
+          loader.load(
+              'king.glb', 
+              function (gltf) {
+                  let animations = gltf.animations;
+                  animations.forEach((animation, i) => {
+                      console.log('Animation ' + i + ': ' + animation.name);
+                  });
+              },
+              undefined, 
+              function (error) {
+                  console.error('An error occurred while loading the GLTF file', error);
+              }
+          );
+        });
+      </script>
+    </a-scene>
+  </body>
+</html>

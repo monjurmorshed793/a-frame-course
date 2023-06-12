@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+  <script src="aframe-mountain-component.min.js"></script>
+</head>
+
+<body>
+    <a-sky color="#87CEEB"></a-sky>
+
+  <a-scene fog="type: exponential; color: #CCF; " background="color:#87CEEB">
+
+    <a-assets>
+      <img id="mountain" src="content/mountain.png" />
+			<img id="concrete-texture" src="content/landingPad.png" />
+      <a-asset-item id="plane-model" src="Airplane.glb"></a-asset-item>
+      <a-asset-item id="cloud-model" src="Clouds.glb" material="color:blue"></a-asset-item>
+      <audio id="wind-sound" src="content/wind.wav" preload="auto"></audio>
+    </a-assets>
+    <a-entity camera="" position="0 400 70" look-controls wasd-controls="acceleration:100; fly:false" rotation="-8.938141604040853 447.3654464381465 0" look-controls="" aframe-injected="" data-aframe-inspector-original-camera=""></a-entity>
+    <!-- <a-entity camera="userHeight: 1.6" position="0 14 0" look-controls wasd-controls="acceleration:10; fly:false"></a-entity> -->
+    <a-mountain scale="1 1 1" id="mountain"
+     material="src: #mountain; repeat: 4 4"
+     sound="src: #wind-sound; autoplay: true; volume: 3; loop: true;"
+     >
+
+    </a-mountain>
+    
+    <a-entity position="-26 400 0" scale="20 20 20" rotation="-1.6976739469726292 110 -1.2880091234540907" gltf-model="Airplane.glb"></a-entity>
+
+    <script>
+         // Number of clouds
+        var numTrees = 100;
+
+        // Random position generation helper function
+        function getRandomPosition(range) {
+        return Math.random() * range - range / 2;
+        }
+
+        // Generate clouds
+        for (var i = 0; i < numTrees; i++) {
+        var tree = document.createElement("a-entity");
+        tree.setAttribute("gltf-model", "#cloud-model");
+        tree.setAttribute("position", {
+            x: getRandomPosition(500),
+            y: getRandomPosition(1000),
+            z: getRandomPosition(500)
+        });
+        tree.setAttribute("scale", "10 10 10");
+        tree.setAttribute("rotation", "0 " + Math.random() * 360 + " 0");
+        tree.setAttribute("material", "color:blue");
+
+        document.querySelector("a-mountain").appendChild(tree);
+        }
+    </script>
+  </a-scene>
+</body>
+</html>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/gh/c-frame/aframe-extras@7.0.0/dist/aframe-extras.min.js"></script>
+  <script src="/aframe-extras.ocean.min.js"></script>
+</head>
+<body>
+  <a-scene >
+    <a-assets>
+      <a-asset-item id="clouds-model" src="Clouds.glb"></a-asset-item>
+      <a-asset-item id="wave-model" src="Wave.glb"></a-asset-item>
+      <a-asset-item id="field-model" src="Field.glb"></a-asset-item>
+      <a-asset-item id="ocean-model" src="Ocean.glb"></a-asset-item>
+      <a-asset-item id="ship-model" src = "Boat.glb"></a-asset-item>
+    </a-assets>
+    <a-entity camera="" position="2.34844 1.98985 8.00215" wasd-controls="" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera=""></a-entity>
+    <a-entity position="0 50 0" scale="-10 -10 -10" rotation="0 120 0" gltf-model="#ship-model"></a-entity>
+    
+    <a-ocean  scale="2 2 2">
+    </a-ocean>
+   
+  </a-scene>
+</body>
+</html>

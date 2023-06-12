@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Seat Model Example</title>
+    <script src="https://aframe.io/releases/1.4.0/aframe.min.js"></script>
+    <script src="https://unpkg.com/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
+  </head>
+  <body>
+    <a-scene>
+      <a-assets>
+        <a-asset-item id="model" src="king.glb"></a-asset-item>
+      </a-assets>
+      <a-entity gltf-model="#model" position="0 1.6 -3" animation-mixer="clip: CharacterArmature|Walk"></a-entity>
+    </a-scene>
+  </body>
+</html>

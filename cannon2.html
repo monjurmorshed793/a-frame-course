@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Cannon Example</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script
+        src="https://cdn.jsdelivr.net/npm/@c-frame/aframe-physics-system@4.2.2/dist/aframe-physics-system.min.js"></script>
+    <script src="cannon2.js"></script>
+</head>
+
+<body>
+    <a-scene physics>
+        <a-assets>
+            <a-asset-item id="cannon-model" src="cannon.glb"></a-asset-item>
+            <a-asset-item id="zombie-item" src="zombie.glb"></a-asset-item>
+        </a-assets>
+
+        <a-entity id="player" cannon-visibility position="0 1.6 0" camera look-controls wasd-controls></a-entity>
+
+        <a-entity id="cannon-entity" visible="false" position="0 -0.5 -1" rotation="10 0 0"
+            gltf-model="#cannon-model"></a-entity>
+        <a-box id="trigger-box" position="5.22006 1.60244 3.16938" width="4" height="4" depth="4" color="#7BC8A4"
+            material="color: #7aa2c7"></a-box>
+
+        <a-entity id="enemyg1" position="0 0 0" animation="property: position; to: 1 0 0; dir: alternate; loop: true; dur: 2000">
+            <a-box id="box1" position="0 1 -5" color="red" static-body opacity="1">
+                <a-entity id="enemy1" gltf-model="zombie.glb" position="0 2 0" scale="0.6 0.5 0.5" color="red" zombie></a-entity>
+            </a-box>
+        </a-entity>
+
+        <a-entity id="enemyg2" position="-3.5 0 -1.5" animation="property: position; to: -3.5 1 -1.5; dir: alternate; loop: true; dur: 2000">
+            <a-entity id="enemy2" gltf-model="zombie.glb" position="0 3 -5" scale="0.6 0.5 0.5" zombie></a-entity>
+            <a-box position="0 1 -5" color="red" static-body opacity="0"></a-box>
+        </a-entity>
+      
+        <a-plane position="0 0 -6" rotation="-90 0 0" width="20" height="20" color="#7BC8A4" static-body></a-plane>
+    </a-scene>
+</body>
+
+</html>
