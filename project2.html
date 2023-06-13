@@ -13,12 +13,39 @@
       <a-asset-item id="ship-model" src = "Boat.glb"></a-asset-item>
     </a-assets>
 
-    <a-entity camera="" position="1.77515 30 -7.59227" wasd-controls="" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera=""></a-entity>
+    <!-- <a-entity camera="" position="1.77515 30 -7.59227" wasd-controls="" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera=""></a-entity> -->
 
     <a-entity position="-70 -10 -100" scale="0.2 0.2 0.2" rotation="0 0 0" gltf-model="#ocean-model" >
-      <a-entity position="0 50 0" scale="0.2 0.2 0.2" rotation="0 120 0" gltf-model="#ship-model"></a-entity>
+      <a-entity id="boat" position="0 50 0" scale="0.2 0.2 0.2" rotation="0 120 0" gltf-model="#ship-model"></a-entity>
     </a-entity>
+    <a-camera id="player" camera="" position="1.77515 30 -7.59227" look-controls wasd-controls="acceleration:10; fly:false">
+      <script>
+        document.addEventListener('keydown', function (event) {
+          const airplane1 = document.querySelector('#boat');
+          console.log('working');
+          const moveDelta = 1;
+          var transition = 500;
+          console.log(event.key);
 
+          if (event.key === 'ArrowUp' || event.key === 'w') {
+            airplane1.setAttribute('animation', 'property: rotation; to: 0 90 0; dur: 2000; easing: linear');
+            airplane1.object3D.position.z -= moveDelta;
+            moveAirplane(airplane1.object3D, 'z', -moveDelta)
+          } else if (event.key === 'ArrowDown' || event.key === 's') {
+            airplane1.setAttribute('animation', 'property: rotation; to: 0 270 0; dur: 2000; easing: linear');
+            airplane1.object3D.position.z += moveDelta;
+          } else if (event.key === 'ArrowLeft' || event.key === 'a') {
+            airplane1.setAttribute('animation', 'property: rotation; to: 0 180 0; dur: 2000; easing: linear');
+            airplane1.object3D.position.x -= moveDelta;
+            // moveAirplane(airplane1, 'x', -moveDelta)
+          } else if (event.key === 'ArrowRight' || event.key === 'd') {
+            airplane1.setAttribute('animation', 'property: rotation; to: 0 0 0; dur: 2000; easing: linear');
+            airplane1.object3D.position.x += moveDelta;
+          }
+
+        });
+      </script>
+     </a-camera>
   </a-scene>
 </body>
 </html>
