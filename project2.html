@@ -4,13 +4,14 @@
   <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
 </head>
 <body>
-  <a-scene background="color: sky">
+  <a-scene background="color:#87CEEB">
     <a-assets>
       <a-asset-item id="clouds-model" src="Clouds.glb"></a-asset-item>
       <a-asset-item id="wave-model" src="Wave.glb"></a-asset-item>
       <a-asset-item id="field-model" src="Field.glb"></a-asset-item>
       <a-asset-item id="ocean-model" src="Ocean.glb"></a-asset-item>
       <a-asset-item id="ship-model" src = "Boat.glb"></a-asset-item>
+      <a-asset-item id="bird-model" src="Flying gull.glb"></a-asset-item>
     </a-assets>
 
     <!-- <a-entity camera="" position="1.77515 30 -7.59227" wasd-controls="" rotation="" look-controls="" aframe-injected="" data-aframe-inspector-original-camera=""></a-entity> -->
@@ -18,6 +19,11 @@
     <a-entity position="-70 -10 -100" scale="0.2 0.2 0.2" rotation="0 0 0" gltf-model="#ocean-model" >
       <a-entity id="boat" position="0 50 0" scale="0.2 0.2 0.2" rotation="0 120 0" gltf-model="#ship-model"></a-entity>
     </a-entity>
+
+    <a-entity id="bird1" scale="0.12639 0.15524 0.3" gltf-model="Flying gull.glb" position="-135.26247 50 -107.50213"></a-entity>
+    <a-entity id="bird2" scale="0.12639 0.15524 0.3" gltf-model="Flying gull.glb" position="0.93897 70 -73.49377"></a-entity>
+    
+
     <a-camera id="player" camera="" position="1.77515 30 -7.59227" look-controls wasd-controls="acceleration:10; fly:false">
       <script>
         document.addEventListener('keydown', function (event) {
@@ -46,6 +52,75 @@
         });
       </script>
      </a-camera>
+<!-- 
+     <script>
+          // Number of clouds
+        var numberOfBirds = 10;
+
+        // Random position generation helper function
+        function getRandomPosition(range) {
+        return Math.random() * range - range / 2;
+        }
+
+        // Generate clouds
+        for (var i = 0; i < numberOfBirds; i++) {
+        var tree = document.createElement("a-entity");
+        tree.setAttribute("gltf-model", "#bird-model");
+        tree.setAttribute("position", {
+            x: getRandomPosition(100),
+            y: 500,
+            z: getRandomPosition(100)
+        });
+        tree.setAttribute("scale", "10 10 10");
+        tree.setAttribute("rotation", "0 " + Math.random() * 360 + " 0");
+        tree.setAttribute("material", "color:blue");
+        tree.setAttribute("color", "#87CEEB");
+
+        document.querySelector("a-mountain").appendChild(tree);
+        }
+
+
+
+      </script> -->
+
+
+      <script>
+        AFRAME.registerComponent('circular-move', {
+          schema: {
+            radius: { default: 1 },     // Radius of the circular path
+            speed: { default: 1 },      // Speed of rotation (in radians per second)
+          },
+    
+          init: function () {
+            this.angle = 0;             // Initial angle
+            this.center = this.el.object3D.position;  // Current position of the entity
+          },
+    
+          tick: function (time, deltaTime) {
+            // Calculate new position based on current angle
+            var x = this.center.x + this.data.radius * Math.cos(this.angle);
+            var z = this.center.z + this.data.radius * Math.sin(this.angle);
+            var y = this.center.y;      // Keep the same y-position
+    
+            // Update the position of the entity
+            this.el.object3D.position.set(x, y, z);
+    
+            // Increment the angle for the next frame
+            this.angle += (this.data.speed * deltaTime) / 1000;  // deltaTime is in milliseconds
+          }
+        });
+    
+        // Attach the 'circular-move' component to the entity
+        document.querySelector('#bird1').setAttribute('circular-move', {
+          radius: 0.2,    // Set the radius of the circular path
+          speed: 0.5    // Set the speed of rotation
+        });
+
+        document.querySelector('#bird2').setAttribute('circular-move', {
+          radius: 0.2,    // Set the radius of the circular path
+          speed: 0.5    // Set the speed of rotation
+        });
+      </script>
   </a-scene>
 </body>
 </html>
